@@ -17,8 +17,8 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 #define BLYNK_AUTH_TOKEN "tgQ4DCV-AMpz90U4HF4qB8K1Y0oTKPfn"
 
 char auth[] = BLYNK_AUTH_TOKEN;//Auth token
-char ssid[] = "HUAWEI-z6K8";// WIFI name
-char pass[] = "PMwZmzYp";// WIFI password
+char ssid[] = "";// WIFI name
+char pass[] = "";// WIFI password
 
 DHT dht(D3, DHT11); //(sensor pin,sensor type)
 BlynkTimer timer;
@@ -121,7 +121,7 @@ void pirsensor() {
     if (value == 0) {
       digitalWrite(relay1, LOW);
     } else if (value == 1) {
-      Blynk.notify("Warning! Please check your security system");
+      Blynk.notify("Motion dedected! Switchinh on lights and air conditioners");
       digitalWrite(relay1, HIGH);
       digitalWrite(relay2, HIGH);
     }
@@ -143,7 +143,7 @@ void ultrasonic() {
   Blynk.virtualWrite(V4, cm);
 
   lcd.setCursor(8, 1);
-  lcd.print("W:");
+  lcd.print("Distance:");
   lcd.print(cm);
   lcd.print("  ");
 }
