@@ -1,3 +1,4 @@
+
 //#include <SerialESP8266wifi.h>
 //Include the library files
 #include <DHT.h>
@@ -11,9 +12,13 @@
 //Initialize the LCD display
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-char auth[] = "tgQ4DCV-AMpz90U4HF4qB8K1Y0oTKPfn";//Auth token
-char ssid[] = "Eisha";// WIFI name
-char pass[] = "12345678";// WIFI password
+#define BLYNK_TEMPLATE_ID "TMPLLryeGy-o"
+#define BLYNK_DEVICE_NAME "IOT Final Project"
+#define BLYNK_AUTH_TOKEN "tgQ4DCV-AMpz90U4HF4qB8K1Y0oTKPfn"
+
+char auth[] = BLYNK_AUTH_TOKEN;//Auth token
+char ssid[] = "HUAWEI-z6K8";// WIFI name
+char pass[] = "PMwZmzYp";// WIFI password
 
 DHT dht(D3, DHT11); //(sensor pin,sensor type)
 BlynkTimer timer;
@@ -118,6 +123,7 @@ void pirsensor() {
     } else if (value == 1) {
       Blynk.notify("Warning! Please check your security system");
       digitalWrite(relay1, HIGH);
+      digitalWrite(relay2, HIGH);
     }
      Blynk.virtualWrite(V7, value);
   }
